@@ -9,7 +9,7 @@ export default function Page() {
       <Bg cls="fill" k="overview" />
       <div className="credit">Digital rendering</div>
       <MasterPlan />
-      <Foot meta="Master Plan" tag />
+      <Foot meta="Master Plan" />
     </>
   );
 }

@@ -4,17 +4,23 @@ import {Intro} from '../lib/widgets';
 
 export const metadata = {title: 'Welcome'};
 
+/* The "L&T Innovation Campus · Explore" hero after the intro is hidden for now:
+   Enter goes straight to the Master Plan. Set to true to bring the hero back. */
+const SHOW_HERO = false;
+
 export default function Page() {
   return (
     <>
-      <Bg cls="kb" k="facade" />
-      <div className="credit">Digital rendering</div>
-      <div className="hero">
-        <div className="eyebrow">{['Work', 'Live', 'Play', 'Learn'].map((w, i) => <span key={w} style={{'--i': i}}>{i > 0 && ' · '}{w}</span>)}</div>
-        <h1><span className="ln"><span>L&amp;T Innovation Campus</span></span><small>Powai (W), Mumbai</small></h1>
-        <Link className="enter" href="/home"><span className="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span><span>Explore</span></Link>
-      </div>
-      <Intro />
+      {SHOW_HERO && <>
+        <Bg cls="kb" k="facade" />
+        <div className="credit">Digital rendering</div>
+        <div className="hero">
+          <div className="eyebrow">{['Work', 'Live', 'Play', 'Learn'].map((w, i) => <span key={w} style={{'--i': i}}>{i > 0 && ' · '}{w}</span>)}</div>
+          <h1><span className="ln"><span>L&amp;T Innovation Campus</span></span><small>Powai (W), Mumbai</small></h1>
+          <Link className="enter" href="/home"><span className="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 8h10M9 4l4 4-4 4" /></svg></span><span>Explore</span></Link>
+        </div>
+      </>}
+      <Intro next={SHOW_HERO ? null : '/home'} />
     </>
   );
 }
