@@ -1,0 +1,8 @@
+Save project images in this folder. The interface uses a local copy first and falls back to the L&T Realty website.
+
+1) lt-innovation-campus-overview.webp
+   https://www.lntrealty.com/wp-content/uploads/2020/10/LT-INNOVATION-CAMPUS-Overview.webp
+2) lt-innovation-campus-facade.jpg
+   https://www.lntrealty.com/wp-content/uploads/2020/10/lnt_comm_tower_mast_banner_03072019.jpg
+
+Walkthrough stills: add files here (e.g. wt-01-arrival.jpg) and list them in STILLS at the top of assets/js/app.js.
