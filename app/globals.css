@@ -1120,3 +1120,138 @@ body[data-view="site"] .siteinfo b{animation:wipe .7s cubic-bezier(.65,0,.35,1) 
 .tab[aria-current="true"] i{animation:tabPop .7s var(--spring) both}
 @keyframes tabPop{0%{transform:scale(.6)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
 .tab[aria-current="true"]:hover i{animation:none}
+
+/* L&T card dot + leader line in brown */
+.ltcard i{width:3px;background:linear-gradient(var(--mark),rgb(var(--mark-rgb) / .9));box-shadow:0 0 0 1px rgba(255,255,255,.6),0 0 8px rgb(var(--mark-rgb) / .6)}
+#siteLayer .ltcard i::after{background:var(--mark);box-shadow:0 0 0 2px #fff,0 0 0 5px rgb(var(--mark-rgb) / .35),0 0 14px rgb(var(--mark-rgb) / .8)}
+#siteLayer .ltcard i::before{border-color:var(--mark)}
+
+/* Master Plan markers: brown dot, ring and leader line */
+.hot .dot{background:var(--mark);box-shadow:0 0 0 2px #fff,0 0 0 5px rgb(var(--mark-rgb) / .35),0 0 16px rgb(var(--mark-rgb) / .8)}
+.hot .dot::after{border-color:var(--mark)}
+.hot .line{background:var(--mark);box-shadow:0 0 0 1px rgba(255,255,255,.6),0 0 8px rgb(var(--mark-rgb) / .6)}
+.hot:hover .line,.hot.on .line{background:var(--mark);box-shadow:0 0 0 1px rgba(255,255,255,.8),0 0 14px rgb(var(--mark-rgb) / 1)}
+.hot:hover .dot,.hot.on .dot{box-shadow:0 0 0 2px #fff,0 0 0 6px rgb(var(--mark-rgb) / .55),0 0 20px rgb(var(--mark-rgb) / 1)}
+
+/* Marker colour (Master Plan + Location L&T marker): coral, stands out on blue glass and greenery */
+:root{--mark:#FF5A36;--mark-rgb:255 90 54}
+
+/* Master Plan markers v2: ringed pin, fine white leader with end tick, frosted white label (number + title + sub) */
+.hot .dot{width:14px;height:14px;background:var(--mark);box-shadow:0 0 0 3px #fff,0 0 0 9px rgb(var(--mark-rgb) / .22),0 4px 14px rgba(0,0,0,.45)}
+.hot .dot::after{inset:-10px;border:1.5px solid rgba(255,255,255,.85)}
+.hot .line{position:relative;width:34px;height:1.5px;margin-left:6px;background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(255,255,255,.6));box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.hot .line::after{content:"";position:absolute;right:-2px;top:-2px;width:5px;height:5px;border-radius:50%;background:#fff}
+.hot:hover .line,.hot.on .line{background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.4)}
+.hot:hover .dot,.hot.on .dot{box-shadow:0 0 0 3px #fff,0 0 0 11px rgb(var(--mark-rgb) / .35),0 4px 16px rgba(0,0,0,.5);transform:scale(1.12)}
+.hot b{display:flex;align-items:center;gap:10px;margin-left:6px;padding:6px 16px 6px 6px;border-radius:999px;
+  background:rgba(255,255,255,.88);border:.5px solid rgba(255,255,255,.9);-webkit-backdrop-filter:blur(20px) saturate(1.8);backdrop-filter:blur(20px) saturate(1.8);
+  color:#1d1d1f;box-shadow:0 10px 28px rgba(0,0,0,.3);letter-spacing:0;text-transform:none;font-size:13px;font-weight:600;line-height:1.15}
+.hot b i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--mark);color:#fff;font-style:normal;font-size:11px;font-weight:700;font-family:inherit;letter-spacing:0;font-variant-numeric:tabular-nums}
+.hot b span{display:flex;flex-direction:column;text-align:left}
+.hot b small{font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;margin-top:2px}
+.hot:hover b,.hot.on b{background:#fff;color:#1d1d1f;border-color:#fff;box-shadow:0 14px 34px rgba(0,0,0,.38),0 0 0 2px rgb(var(--mark-rgb) / .9);transform:translateX(2px) scale(1.04)}
+/* angled leader: line rises at 35deg, label sits at its top end */
+.hot .line,.hot:hover .line,.hot.on .line{width:33px;background:none;box-shadow:none}
+.hot .line::before{content:"";position:absolute;left:0;top:0;width:40px;height:1.5px;background:linear-gradient(90deg,rgba(255,255,255,.95),#fff);box-shadow:0 1px 4px rgba(0,0,0,.35);transform-origin:0 50%;transform:rotate(-35deg)}
+.hot .line::after{left:30px;right:auto;top:-25px}
+.hot b{position:relative;top:-23px;margin-left:4px}
+/* steeper leader: 55deg, 44px */
+.hot .line,.hot:hover .line,.hot.on .line{width:25px}
+.hot .line::before{width:44px;transform:rotate(-55deg)}
+.hot .line::after{left:22px;top:-38px}
+.hot b{top:-36px}
+
+/* curved leaders (SVG), one style per marker */
+.hot .line,.hot:hover .line,.hot.on .line{position:relative;height:0;background:none;box-shadow:none;margin-left:5px}
+.hot .line::before,.hot .line::after{display:none}
+.hot .lead{position:absolute;left:-2px;bottom:-2px;overflow:visible;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45))}
+.lead path{fill:none;stroke:#fff;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.lead circle{fill:#fff}
+.lead.dash path{stroke-dasharray:5 4}
+.lead.dots path{stroke-width:2.6;stroke-dasharray:.01 5.5}
+.lead.glow path{stroke:var(--mark);stroke-width:2;filter:drop-shadow(0 0 3px rgb(var(--mark-rgb) / .9))}
+.lead.glow circle{fill:var(--mark);stroke:#fff;stroke-width:1.2}
+.hot b{top:calc(var(--ly) * -1)}
+.hot.anim-play .line{transform-origin:left bottom}
+/* leader starts under the dot centre so dot and line read as one piece */
+.hot .dot{z-index:1}
+.hot .line,.hot:hover .line,.hot.on .line{margin-left:-7px}
+.hot .lead{bottom:-4px}
+.hot b{margin-left:2px}
+.lead.dots path{stroke-width:2.4;stroke-dasharray:1 5}
+
+/* Marker animations: curve draws out from the dot, dashes march toward the label, end tick and badge pulse */
+.hot .line{transform:none}
+.hot.anim-play .line{animation:lineOn .01s linear calc(var(--delay, 0s) + .4s) forwards}
+@keyframes lineOn{to{opacity:1}}
+.hot .lead{clip-path:inset(0 100% 0 0)}
+.hot.anim-play .lead{animation:leadDraw .55s cubic-bezier(.65,0,.35,1) calc(var(--delay, 0s) + .4s) forwards}
+@keyframes leadDraw{0%{clip-path:inset(100% 100% 0 0)}100%{clip-path:inset(-8px -8px -8px -8px)}}
+.lead.dash path{animation:march .9s linear infinite}
+.lead.dots path{animation:marchDots 1.1s linear infinite}
+@keyframes march{to{stroke-dashoffset:-9}}
+@keyframes marchDots{to{stroke-dashoffset:-6}}
+.lead.glow path{animation:glowPulse 2s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 2px rgb(var(--mark-rgb) / .6))}50%{filter:drop-shadow(0 0 6px rgb(var(--mark-rgb) / 1))}}
+.lead circle{transform-box:fill-box;transform-origin:center;animation:tickPing 2.4s ease-in-out infinite}
+.hot:nth-child(2) .lead circle{animation-delay:.6s}.hot:nth-child(3) .lead circle{animation-delay:1.2s}.hot:nth-child(4) .lead circle{animation-delay:1.8s}
+@keyframes tickPing{0%,70%,100%{transform:scale(1)}80%{transform:scale(1.8)}}
+.hot b i{animation:badgeRing 2.4s ease-out infinite}
+.hot:nth-child(2) b i{animation-delay:.6s}.hot:nth-child(3) b i{animation-delay:1.2s}.hot:nth-child(4) b i{animation-delay:1.8s}
+@keyframes badgeRing{0%{box-shadow:0 0 0 0 rgb(var(--mark-rgb) / .55)}70%,100%{box-shadow:0 0 0 8px rgb(var(--mark-rgb) / 0)}}
+.hot b span{transition:transform .4s var(--spring)}
+.hot:hover b span,.hot.on b span{transform:translateX(2px)}
+.hot:hover .lead path,.hot.on .lead path{stroke-width:2.2}
+
+/* Marker labels: pill unfolds from the line end, text lines rise in, a light sheen passes, gentle float */
+.hot.anim-play b{animation:labelUnfold .6s cubic-bezier(.16,1,.3,1) calc(var(--delay, 0s) + .85s) forwards,labelFloat 4s ease-in-out calc(var(--delay, 0s) + 1.6s) infinite}
+@keyframes labelUnfold{0%{opacity:0;transform:scale(.6);clip-path:inset(0 100% 0 0 round 999px);filter:blur(4px)}60%{filter:none}100%{opacity:1;transform:none;clip-path:inset(-20px -20px -20px -20px round 999px)}}
+@keyframes labelFloat{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.hot b{transform-origin:left center}
+.hot b i,.hot b span,.hot b small{opacity:0}
+.hot.anim-play b i{animation:badgeIn .5s var(--bounce) calc(var(--delay, 0s) + 1.05s) forwards,badgeRing 2.4s ease-out calc(var(--delay, 0s) + 1.6s) infinite}
+.hot.anim-play b span{animation:txtIn .5s cubic-bezier(.16,1,.3,1) calc(var(--delay, 0s) + 1.15s) forwards}
+.hot.anim-play b small{animation:txtIn .5s cubic-bezier(.16,1,.3,1) calc(var(--delay, 0s) + 1.3s) forwards}
+@keyframes badgeIn{0%{opacity:0;transform:scale(0) rotate(-90deg)}100%{opacity:1;transform:none}}
+@keyframes txtIn{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
+.hot b::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.85) 50%,transparent 60%) 100% 0/250% 100% no-repeat;
+  animation:labelSheen 5s ease-in-out calc(var(--delay, 0s) + 2s) infinite}
+@keyframes labelSheen{0%{background-position:100% 0}30%,100%{background-position:0% 0}}
+.hot:hover b,.hot.on b{animation-play-state:running,paused}
+
+/* Markers in the brand palette: L&T blue dot + badge, yellow accents, white lines */
+:root{--mark:#0B66B2;--mark-rgb:11 102 178}
+.hot b i{color:var(--yellow)}
+.lead.glow path{stroke:var(--yellow)}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 2px rgba(255,199,27,.6))}50%{filter:drop-shadow(0 0 6px rgba(255,199,27,1))}}
+.lead.glow circle{fill:var(--yellow)}
+.hot:hover b,.hot.on b{box-shadow:0 14px 34px rgba(0,0,0,.38),0 0 0 2px var(--yellow)}
+
+/* flow: a light pulse travels dot -> label along each leader, in marker order */
+.lead path.flow{stroke:var(--yellow);stroke-width:2.6;stroke-dasharray:14 100;stroke-dashoffset:14;filter:drop-shadow(0 0 3px rgba(255,199,27,.9));
+  animation:flowRun 2.2s cubic-bezier(.45,0,.55,1) calc(var(--delay, 0s) + 1.7s) infinite}
+.lead.glow path.flow{stroke:#fff;filter:drop-shadow(0 0 3px #fff)}
+@keyframes flowRun{0%{stroke-dashoffset:14;opacity:1}55%{stroke-dashoffset:-100;opacity:1}56%,100%{stroke-dashoffset:-100;opacity:0}}
+
+/* strict order per marker: 1 dot (0-.45s) -> 2 line (.5-1.05s) -> 3 text panel (1.1s+); next marker starts after */
+.hot.anim-play .dot{animation:dotPop .45s cubic-bezier(.175,.885,.32,1.275) var(--delay, 0s) forwards}
+.hot.anim-play .line{animation:lineOn .01s linear calc(var(--delay, 0s) + .5s) forwards}
+.hot.anim-play .lead{animation:leadDraw .55s cubic-bezier(.65,0,.35,1) calc(var(--delay, 0s) + .5s) forwards}
+.hot b{opacity:0}
+.hot.anim-play b{animation:labelUnfold .55s cubic-bezier(.16,1,.3,1) calc(var(--delay, 0s) + 1.1s) forwards,labelFloat 4s ease-in-out calc(var(--delay, 0s) + 2s) infinite}
+.hot.anim-play b i{animation:badgeIn .45s var(--bounce) calc(var(--delay, 0s) + 1.3s) forwards,badgeRing 2.4s ease-out calc(var(--delay, 0s) + 2s) infinite}
+.hot.anim-play b span{animation:txtIn .45s cubic-bezier(.16,1,.3,1) calc(var(--delay, 0s) + 1.4s) forwards}
+.hot.anim-play b small{animation:txtIn .45s cubic-bezier(.16,1,.3,1) calc(var(--delay, 0s) + 1.5s) forwards}
+.hot.anim-play .dot::after{animation-delay:calc(var(--delay, 0s) + .45s)}
+.lead path.flow{animation-delay:calc(var(--delay, 0s) + 2s)}
+
+/* Location site view L&T card: dot (0s) -> curved line draws up (.5s) -> card drops in (1.1s), then a pulse flows up the line */
+#siteLayer .ltcard i{background:none;box-shadow:none;width:2px;animation:none;opacity:1;transform:none}
+#siteLayer .ltcard i::after{animation:dotPop .45s cubic-bezier(.175,.885,.32,1.275) 0s both}
+#siteLayer .ltcard i::before{border-color:rgba(255,255,255,.85);animation-delay:.45s}
+#siteLayer .ltlead{position:absolute;left:50%;bottom:0;margin-left:-20px;overflow:visible;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));
+  clip-path:inset(100% 0 0 0);animation:ltDraw .6s cubic-bezier(.65,0,.35,1) .5s forwards}
+@keyframes ltDraw{to{clip-path:inset(-8px -8px -8px -8px)}}
+#siteLayer .ltlead path.flow{--delay:-.3s}
+#siteLayer .ltcard .in{animation:cardDrop .6s var(--bounce) 1.1s both}
