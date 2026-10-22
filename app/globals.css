@@ -1051,3 +1051,72 @@ body[data-view="site"] .siteinfo b{animation:wipe .7s cubic-bezier(.65,0,.35,1) 
 
 /* page name at the bottom right removed */
 .foot .meta{display:none}
+
+/* ================= AMENITIES (CIGNUS-style slides, from zip 8) ================= */
+#amStage{position:fixed;inset:0;z-index:2;overflow:hidden;background:var(--navy)}
+#amStage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;opacity:0;transition:opacity 1.2s ease}
+#amStage img.on{opacity:1}
+#amStage img.kb{animation:amkb 9s ease-out both}
+@keyframes amkb{from{transform:scale(1.08)}to{transform:scale(1)}}
+#amStage::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(2,26,48,.55) 0,rgba(2,26,48,.05) 30%,rgba(2,26,48,0) 55%,rgba(2,26,48,.82) 100%),
+  linear-gradient(90deg,rgba(2,26,48,.45) 0,rgba(2,26,48,0) 30%)}
+.am-title{position:fixed;z-index:5;left:0;right:0;top:calc(84px + env(safe-area-inset-top,0px));text-align:center;pointer-events:none;
+  font-size:clamp(40px,7vw,104px);font-weight:200;letter-spacing:.22em;text-indent:.22em;line-height:1;text-transform:uppercase;
+  background:linear-gradient(180deg,#FFFFFF 10%,#FFE18A 60%,var(--yellow) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 24px rgba(2,26,48,.45))}
+.am-strip{position:fixed;z-index:21;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;gap:4px;padding:5px;background:var(--blue);border:2px solid var(--yellow);border-radius:999px;box-shadow:0 16px 36px rgba(0,0,0,.4);max-width:calc(100% - 300px);overflow-x:auto;scrollbar-width:none}
+.am-strip button{padding:12px 24px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;color:#fff;white-space:nowrap;transition:background .3s,color .3s}
+.am-strip button:hover{background:rgba(255,255,255,.1)}
+.am-strip button[aria-pressed="true"]{background:var(--yellow);color:var(--blue)}
+@media (max-width:1100px){
+  .am-strip{bottom:calc(96px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 24px)}
+  .am-strip button{padding:10px 16px;font-size:11px}
+}
+@media (max-width:640px){.am-title{top:74px;letter-spacing:.14em;text-indent:.14em}}
+
+/* Amenities: Apple-style segmented slide switcher */
+.am-strip{gap:2px;padding:4px;background:rgba(28,28,30,.55);-webkit-backdrop-filter:blur(30px) saturate(1.8);backdrop-filter:blur(30px) saturate(1.8);border:.5px solid rgba(255,255,255,.18);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.am-strip button{padding:10px 22px;font-size:13px;font-weight:500;letter-spacing:-.005em;color:rgba(255,255,255,.82);transition:background .45s var(--spring),color .3s,box-shadow .45s var(--spring),transform .45s var(--spring)}
+.am-strip button:hover{background:rgba(255,255,255,.1);color:#fff}
+.am-strip button:active{transform:scale(.96)}
+.am-strip button[aria-pressed="true"]{background:#fff;color:#1d1d1f;font-weight:600;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+
+/* Sidebars: glassmorphism (blur on .rail only on desktop; on .rails-wrap it would trap the fixed rails) */
+.glass .rail{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06)),rgba(10,30,52,.3);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35)}
+@media (max-width:1100px){
+  .rails-wrap.glass{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06)),rgba(10,30,52,.3);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border:1px solid rgba(255,255,255,.28);box-shadow:0 18px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35)}
+  .glass .rail{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.tab span{text-shadow:0 1px 3px rgba(0,0,0,.45)}
+
+/* Amenities title: letters rise in one by one, then a light sweep runs across */
+.am-title{background:none}
+.am-title span{display:inline-block;color:transparent;-webkit-background-clip:text;background-clip:text;
+  background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) 100% 0/250% 100% no-repeat,linear-gradient(180deg,#FFFFFF 10%,#FFE18A 60%,var(--yellow) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  animation:amLetter 1.2s var(--spring) calc(.25s + var(--i)*.08s) both,amShine 5s ease-in-out calc(1.8s + var(--i)*.06s) infinite}
+@keyframes amLetter{from{opacity:0;transform:translateY(.45em) scale(.9);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes amShine{0%{background-position:100% 0,0 0}35%,100%{background-position:0% 0,0 0}}
+.am-title span{letter-spacing:0}
+
+/* Sidebars: Apple-style motion: rails spring in, tabs cascade, Dock magnification, active icon pops */
+@media (min-width:1101px){
+  .rail.l{animation:railInL .9s var(--spring) .15s both}
+  .rail.r{animation:railInR .9s var(--spring) .25s both}
+}
+@keyframes railInL{from{opacity:0;transform:translate(-40px,-50%) scale(.92)}to{opacity:1;transform:translate(0,-50%)}}
+@keyframes railInR{from{opacity:0;transform:translate(40px,-50%) scale(.92)}to{opacity:1;transform:translate(0,-50%)}}
+.tab{animation:tabIn .7s var(--spring) both}
+.tab:nth-child(1){animation-delay:.3s}.tab:nth-child(2){animation-delay:.36s}.tab:nth-child(3){animation-delay:.42s}
+.tab:nth-child(4){animation-delay:.48s}.tab:nth-child(5){animation-delay:.54s}.tab:nth-child(6){animation-delay:.6s}
+@keyframes tabIn{from{opacity:0;transform:translateY(10px) scale(.8);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.tab i{transition:transform .5s var(--spring),background .3s,color .3s,box-shadow .3s}
+.tab:hover i{transform:scale(1.25) translateY(-1px);background:rgba(255,255,255,.18)}
+.tab:hover+.tab i,.tab:has(+.tab:hover) i{transform:scale(1.1)}
+.tab:active i{transform:scale(.92);transition-duration:.15s}
+.tab span{transition:color .3s,transform .5s var(--spring)}
+.tab:hover span{transform:translateY(2px)}
+.tab[aria-current="true"] i{animation:tabPop .7s var(--spring) both}
+@keyframes tabPop{0%{transform:scale(.6)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.tab[aria-current="true"]:hover i{animation:none}
